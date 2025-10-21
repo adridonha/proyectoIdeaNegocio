@@ -1,0 +1,15 @@
+# Imagen base oficial de MySQL
+FROM mysql:8.0
+
+# Variables de entorno
+ENV MYSQL_ROOT_PASSWORD=admin123
+ENV MYSQL_DATABASE=absentismo_db
+
+# Copiamos el script SQL para crear las tablas
+COPY absentismo_mysql.sql /docker-entrypoint-initdb.d/
+
+# Exponemos el puerto
+EXPOSE 3306
+
+# Usamos un volumen para persistir los datos
+VOLUME /var/lib/mysql

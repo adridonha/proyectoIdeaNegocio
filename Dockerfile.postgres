@@ -1,0 +1,16 @@
+# Imagen base oficial de PostgreSQL
+FROM postgres:16
+
+# Variables de entorno
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=admin123
+ENV POSTGRES_DB=absentismo_db
+
+# Copiamos el script SQL para crear las tablas
+COPY absentismo_postgres.sql /docker-entrypoint-initdb.d/
+
+# Exponemos el puerto
+EXPOSE 5433
+
+# Volumen persistente para los datos
+VOLUME /var/lib/postgresql/data
